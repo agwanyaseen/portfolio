@@ -104,7 +104,7 @@ class MyHomePage extends StatelessWidget {
                 ),
                 applyPadding(AboutMe(), paddingSize),
                 applyPadding(Experience(), paddingSize),
-                // applyPadding(Qualification(), paddingSize),
+                applyPadding(Qualification(), paddingSize),
               ],
             ),
           ),
