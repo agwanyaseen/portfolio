@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/data/icons_data.dart';
 import 'package:portfolio/utils/size_helpers.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Intro extends StatelessWidget {
+  final iconsData = getIcons();
   @override
   Widget build(BuildContext context) {
     var padding = _getMarginAccordingtoWindow(context);
@@ -43,7 +45,7 @@ class Intro extends StatelessWidget {
                         style:
                             TextStyle(color: Colors.white70, fontSize: 20.0)),
                     ElevatedButton(
-                      onPressed: _launchURL,
+                      onPressed: () => _launchURL("http://1Rivet.com"),
                       child: Text(
                         '1Rivet',
                         style: TextStyle(color: Colors.white70, fontSize: 20.0),
@@ -63,18 +65,29 @@ class Intro extends StatelessWidget {
               ],
             ),
           ),
+          Container(
+            margin: const EdgeInsets.only(left: 20, top: 15),
+            child: Row(
+              children: [
+                ...iconsData.map(
+                  (e) => IconButton(
+                    color: Colors.grey,
+                    tooltip: e.toolTip,
+                    hoverColor: Colors.black,
+                    icon: e.icon,
+                    onPressed: () => _launchURL(e.url),
+                  ),
+                )
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
 
-  void _launchURL() async {
-    const rivetUrl = "http://1Rivet.com";
-    // window.open(rivetUrl, '');
-    // const rivetUrl = "1Rivet.com";
-    await canLaunch(rivetUrl)
-        ? await launch(rivetUrl)
-        : print('Issue In launching Url');
+  void _launchURL(String url) async {
+    await canLaunch(url) ? await launch(url) : print('Issue In launching Url');
   }
 
   double _getMarginAccordingtoWindow(BuildContext context) {
