@@ -87,25 +87,28 @@ class MyHomePage extends StatelessWidget {
         controller: ScrollController(),
         child: Container(
           child: Expanded(
-            child: ListView(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('/images/background.jpg'),
-                      fit: BoxFit.cover,
+            child: Scrollbar(
+              hoverThickness: 10.0,
+              child: ListView(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('/images/background.jpg'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
+                    child: Center(
+                      child: Intro(),
                     ),
                   ),
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  child: Center(
-                    child: Intro(),
-                  ),
-                ),
-                applyPadding(AboutMe(), paddingSize),
-                applyPadding(Experience(), paddingSize),
-                applyPadding(Qualification(), paddingSize),
-              ],
+                  applyPadding(AboutMe(), paddingSize),
+                  applyPadding(Experience(), paddingSize),
+                  applyPadding(Qualification(), paddingSize),
+                ],
+              ),
             ),
           ),
         ),
