@@ -2,6 +2,7 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:portfolio/data/qualification_data.dart';
+import 'package:portfolio/utils/size_helpers.dart';
 import 'package:portfolio/widgets/bootstrap_card.dart';
 
 class Qualification extends StatefulWidget {
@@ -112,11 +113,19 @@ class _QualificationState extends State<Qualification> {
 
   @override
   Widget build(BuildContext context) {
-    final qual = ListView(
-      children: [
+    window = getWindow(context);
+    var childrens = <Widget>[];
+    if (window == Window.ExtraSmall || window == Window.Small) {
+      childrens
+          .addAll(qualifications.map((a) => _createMobileView(a)).toList());
+    } else {
+      childrens = [
         _createQualificationsHeader(),
         ...qualifications.map((e) => _createQualifications(e))
-      ],
+      ];
+    }
+    final qual = Column(
+      children: childrens,
     );
     return BootstrapCard(
       title: 'Qualification',
