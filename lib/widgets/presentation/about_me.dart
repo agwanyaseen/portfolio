@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/data/about_me_data.dart';
 
@@ -16,12 +17,6 @@ class _AboutMeState extends State<AboutMe> {
 
   bool show = false;
 
-  _onExpandButtonPressed() {
-    setState(() {
-      show = !show;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return BootstrapCard(
@@ -29,10 +24,6 @@ class _AboutMeState extends State<AboutMe> {
       child: Column(
         children: [
           _buildAboutMePara(),
-          ElevatedButton(
-            onPressed: _onExpandButtonPressed,
-            child: Text(show ? 'Close' : 'Cick to Know More About Me'),
-          ),
           if (show)
             Container(
               margin: const EdgeInsets.only(top: 20),
@@ -50,6 +41,7 @@ class _AboutMeState extends State<AboutMe> {
         children: aboutMe.map((e) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
                 e.value,
@@ -104,11 +96,33 @@ class _AboutMeState extends State<AboutMe> {
   }
 
   Widget _buildAboutMePara() {
-    return Text(
-      'Hi, My Name is Yaseen Agwan. A developer employed at 1Rivet India as a Backend Developer whose core responsibility is to create backend services, web api, sql queries. I have 1+ year of  experience in backend development. Apart from just backend development I can also create frontend side and Database. I usually use dotnet as a tool to solve business problems but I also have knowledge of Dart(Flutter), Javascript. This portfolio is powered by Flutter',
-      overflow: TextOverflow.visible,
-      style: TextStyle(
-        fontSize: 20.0,
+    const double fontSize = 22;
+    final style = TextStyle(
+      fontSize: fontSize,
+    );
+    return RichText(
+      text: TextSpan(
+        children: <TextSpan>[
+          TextSpan(
+            text:
+                'Hi, I Name is Yaseen Agwan. A developer employed at 1Rivet India as a Backend Developer whose core responsibility is to create backend services, web api, sql queries. I have 1+ year of  experience in backend development. Apart from just backend development I can also create frontend side and Database. I usually use dotnet as a tool to solve business problems but I also have knowledge of Dart(Flutter), Javascript. This portfolio is powered by Flutter.\n ',
+            style: style,
+          ),
+          TextSpan(
+            text: 'Click Here to Know More about me',
+            style: TextStyle(
+              decoration: TextDecoration.underline,
+              fontSize: fontSize,
+              color: Colors.blue,
+            ),
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                setState(() {
+                  show = !show;
+                });
+              },
+          )
+        ],
       ),
     );
   }
