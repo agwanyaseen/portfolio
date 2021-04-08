@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Yaseen Agwan',
       theme: ThemeData(
+        fontFamily: 'KiwiMaru',
         primarySwatch: fontColor,
         textTheme: TextTheme(
           headline3: TextStyle(

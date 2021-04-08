@@ -100,8 +100,8 @@ class _AboutMeState extends State<AboutMe> {
     final style = TextStyle(
       fontSize: fontSize,
     );
-    return RichText(
-      text: TextSpan(
+    return Text.rich(
+      TextSpan(
         children: <TextSpan>[
           TextSpan(
             text:
