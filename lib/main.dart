@@ -50,21 +50,21 @@ class MyHomePage extends StatelessWidget {
               hoverThickness: 10.0,
               child: ListView(
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('/images/background.jpg'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width,
-                    child: Center(
-                      child: Intro(),
-                    ),
-                  ),
-                  applyPadding(AboutMe(), paddingSize),
-                  applyPadding(Experience(), paddingSize),
+                  // Container(
+                  //   decoration: BoxDecoration(
+                  //     image: DecorationImage(
+                  //       image: AssetImage('/images/background.jpg'),
+                  //       fit: BoxFit.cover,
+                  //     ),
+                  //   ),
+                  //   height: MediaQuery.of(context).size.height,
+                  //   width: MediaQuery.of(context).size.width,
+                  //   child: Center(
+                  //     child: Intro(),
+                  //   ),
+                  // ),
+                  // applyPadding(AboutMe(), paddingSize),
+                  // applyPadding(Experience(), paddingSize),
                   applyPadding(Qualification(), paddingSize),
                 ],
               ),

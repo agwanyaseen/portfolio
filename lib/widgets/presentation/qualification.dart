@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:portfolio/data/qualification_data.dart';
 import 'package:portfolio/widgets/bootstrap_card.dart';
@@ -9,7 +11,7 @@ class Qualification extends StatefulWidget {
 
 class _QualificationState extends State<Qualification> {
   List<QualificationModel> qualifications = <QualificationModel>[];
-
+  Window window;
   @override
   void initState() {
     qualifications = getQualifications();
@@ -98,9 +100,19 @@ class _QualificationState extends State<Qualification> {
     );
   }
 
+  Widget _createMobileView(QualificationModel model) {
+    return Card(
+      child: ListTile(
+        title: Text(model.course),
+        subtitle: Text(model.board),
+        trailing: Text('${model.percentage}%'),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final qual = Column(
+    final qual = ListView(
       children: [
         _createQualificationsHeader(),
         ...qualifications.map((e) => _createQualifications(e))
